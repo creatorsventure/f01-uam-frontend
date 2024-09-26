@@ -1,0 +1,17 @@
+<nz-form-item>
+    <nz-form-label class="opsFieldsPadding" [nzRequired]="!isOptional">
+        {{appCtrlService.getControlText( pageName, controlName )}}</nz-form-label>
+    <nz-form-control class="opsFieldsPadding" *ngIf="crudOps !== permissions.view" [nzValidateStatus]="getFormField()"
+        [nzHasFeedback]="getFormField()?.invalid
+		                && getFormField()?.dirty" [nzErrorTip]="errorTemplate">
+        <input nz-input [(ngModel)]="controlValue" [disabled]="isDisabled" placeholder="{{appCtrlService.getControlText(pageName,
+            controlName)}}" nzSize="small" (input)="onChange($event)" (blur)="touched()" nz-tooltip
+            [nzTooltipTitle]="appCtrlService.generateToolTip(controlType, pageName, controlName)" />
+    </nz-form-control>
+    <ng-template #errorTemplate>
+        <app-field-errors [control]="getFormField()" [controlName]="controlName"></app-field-errors>
+    </ng-template>
+    <nz-form-control class="opsFieldsPadding" *ngIf="crudOps === permissions.view">
+        <span>{{controlValue}}</span>
+    </nz-form-control>
+</nz-form-item>

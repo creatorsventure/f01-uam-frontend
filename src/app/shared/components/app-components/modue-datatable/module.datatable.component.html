@@ -1,0 +1,86 @@
+<nz-table nzShowSizeChanger nzSize="default" nzPaginationType="small" [nzFrontPagination]="false" [nzNoResult]="nodata"
+    [nzPageSizeOptions]=[10,20,30] [nzData]="paginationDto.result" [nzLoading]="paginationDto.loading"
+    [nzTotal]="paginationDto.total" [nzPageSize]="paginationDto.pageSize" [nzPageIndex]="paginationDto.pageIndex"
+    (nzQueryParams)="onQueryParamsChanged($event)">
+    <thead>
+        <tr>
+            <th nzColumnKey="id" [nzEllipsis]="true" [nzSortFn]="true">{{'app.general.pagination.id' | translate}}</th>
+            <th nzColumnKey="name" [nzEllipsis]="true" [nzSortFn]="true">
+                {{'app.general.pagination.name' | translate}}
+            </th>
+            <th nzColumnKey="description" [nzEllipsis]="true" [nzSortFn]="true">
+                {{'app.general.pagination.description' | translate}}
+            </th>
+            <th nzColumnKey="status" [nzEllipsis]="true" [nzSortFn]="true">
+                {{'app.general.pagination.status' | translate}}
+            </th>
+            <th [nzEllipsis]="true" [nzRight]="true">{{'app.general.pagination.options' | translate}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let page of paginationDto.result">
+            <td>{{ page.id }}</td>
+            <td [nzEllipsis]="true">{{ page.name }}</td>
+            <td [nzEllipsis]="true">{{ page.description }}</td>
+            <td [nzEllipsis]="true">
+                <a *ngIf="page.status" nz-popconfirm nzPopconfirmPlacement="bottom"
+                    nzPopconfirmTitle="{{'app.buttons.statusPopUp' | translate}}"
+                    nzOkText="{{'app.buttons.yes' | translate}}" nzCancelText="{{'app.buttons.no' | translate}}"
+                    (nzOnConfirm)="changeStatus(page.id, false)">
+                    <nz-tag [nzColor]="'#87d068'">
+                        <i nz-icon nzType="check-circle"></i>
+                        {{'app.generic-page.values.active' | translate}}
+                    </nz-tag>
+                </a>
+                <a *ngIf="!page.status" nz-popconfirm nzPopconfirmPlacement="bottom"
+                    nzPopconfirmTitle="{{'app.buttons.statusPopUp' | translate}}"
+                    nzOkText="{{'app.buttons.yes' | translate}}" nzCancelText="{{'app.buttons.no' | translate}}"
+                    (nzOnConfirm)="changeStatus(page.id, true)">
+                    <nz-tag [nzColor]="'#f50'" *ngIf="!page.status">
+                        <i nz-icon nzType="close-circle"></i>
+                        {{'app.generic-page.values.inactive' | translate}}
+                    </nz-tag>
+                </a>
+            </td>
+            <td [nzRight]="true">
+                <nz-space>
+                    <a *nzSpaceItem nz-tooltip nzTooltipTitle="{{'app.buttons.view' | translate}}"
+                        routerLink="view/{{ page.id }}">
+                        <i nz-icon nzType="security-scan" nzTheme="twotone" nzTwotoneColor="#3f87f5"></i>
+                    </a>
+                    <a *nzSpaceItem nz-tooltip nzTooltipTitle="{{'app.buttons.edit' | translate}}"
+                        routerLink="edit/{{ page.id }}">
+                        <i nz-icon nzType="edit" nzTheme="twotone" nzTwotoneColor="#856404"></i>
+                    </a>
+                    <a *nzSpaceItem nz-tooltip nzTooltipTitle="{{'app.buttons.delete' | translate}}" nz-popconfirm
+                        nzPopconfirmTitle="{{'app.buttons.deletePopUp' | translate}}" nzPopconfirmPlacement="bottom"
+                        nzOkText="{{'app.buttons.yes' | translate}}" nzCancelText="{{'app.buttons.no' | translate}}"
+                        (nzOnConfirm)="delete(page.id)">
+                        <i nz-icon nzType="delete" nzTheme="twotone" nzTwotoneColor="#ff7875"></i>
+                    </a>
+                    <ng-container *ngIf="resendMailOption">
+                        <a *nzSpaceItem nz-tooltip nzTooltipTitle="{{'app.buttons.resendMail' | translate}}"
+                            nz-popconfirm nzPopconfirmTitle="{{'app.buttons.resendMailPopUp' | translate}}"
+                            nzPopconfirmPlacement="bottom" nzOkText="{{'app.buttons.yes' | translate}}"
+                            nzCancelText="{{'app.buttons.no' | translate}}"
+                            (nzOnConfirm)="resendActivationMail(page.id)">
+                            <i nz-icon nzType="mail" nzTheme="twotone" nzTwotoneColor="#3F87F5"></i>
+                        </a>
+                    </ng-container>
+                </nz-space>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+<ng-template #nodata>
+    <nz-empty [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+        <ng-template #contentTpl>
+            <span> {{'app.general.pagination.noData' | translate}} </span>
+        </ng-template>
+        <ng-template #footerTpl>
+            <a nz-button nzType="primary" nzSize="small" routerLink="add">
+                <i nz-icon nzType="plus-circle"></i>{{'app.general.button.add' | translate}}
+            </a>
+        </ng-template>
+    </nz-empty>
+</ng-template>

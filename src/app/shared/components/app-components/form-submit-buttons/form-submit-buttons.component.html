@@ -1,0 +1,13 @@
+<ng-template [ngIf]="crudOps !== permissions.view">
+  <nz-divider></nz-divider>
+  <nz-space>
+    <button *nzSpaceItem nz-button nzType="default" nzDanger nzSize="small" (click)="reset()">
+      <i nz-icon nzType="close-circle"></i>
+      {{'app.general.button.reset' | translate}}
+    </button>
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="small">
+      <i nz-icon nzType="check-circle"></i>
+      {{'app.general.button.submit' | translate}}
+    </button>
+  </nz-space>
+</ng-template>

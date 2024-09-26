@@ -1,0 +1,103 @@
+{
+  "app": {
+    "name": "UAM",
+    "author": "Ramakrishna R",
+    "description": "This is an User Access Management application. Please manage the users, access etc here.",
+    "privacy": "privacy",
+    "rights": "All rights reserved",
+    "version": "1.0",
+    "year": "2024",
+    "general": {
+      "button": {
+        "all": "All",
+        "add": "Add",
+        "edit": "Edit",
+        "view": "View",
+        "submit": "Submit",
+        "reset": "Reset"
+      },
+      "page": {
+        "id": "Id",
+        "name": "Name",
+        "description": "Description",
+        "status": "Status"
+      },
+      "pagination": {
+        "noData": "No data found",
+        "options": "Options",
+        "searchField": "Search field",
+        "searchValue": "Search value",
+        "select": "Select",
+        "id": "Id",
+        "name": "Name",
+        "description": "Description",
+        "status": "Status"
+      },
+      "tooltip": {
+        "control": "Field: {{controlName}} -> Min Length: {{minLength}}, Max Length: {{maxLength}}, Allowed: {{pattern}}, regx: {{regx}}"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    },
+    "page": {
+      "governance": {
+        "name": "Governance"
+      },
+      "permission": {
+        "name": "Permission",
+        "description": "Permission can be created here!"
+      },
+      "menu": {
+        "name": "Menu",
+        "description": "Menu can be created here!",
+        "label": {
+          "path": "Path"
+        }
+      },
+      "organization": {
+        "name": "Organization",
+        "description": "Organization can be created here!"
+      },
+      "access-role": {
+        "name": "Access Role",
+        "description": "Access role can be created here!"
+      },
+      "data-role": {
+        "name": "Data Role",
+        "description": "Data role can be created here!"
+      },
+      "user": {
+        "name": "User",
+        "description": "User can be created here!"
+      }
+    },
+    "regxPatterns": {
+      "input": "Upper case, Lower case, Numeric, underscore",
+      "inputSpecial": "Upper case, Lower case, Numeric, underscore, comma, slash, hyphen, dot",
+      "numeric": "Numeric",
+      "password": "Upper case, Lower case, Numeric, @ $ #"
+    },
+    "error": {
+      "msg-0": "Problem occurred. Please try again later.",
+      "msg-1": "Field should not be empty.",
+      "msg-2": "Field should not be null.",
+      "msg-3": "Please input your email!",
+      "msg-4": "Please input your password!",
+      "msg-5": "Requested Data Not available.",
+      "msg-6": "Field required minimum length of input.",
+      "msg-7": "Field cannot accept more.",
+      "msg-8": "Input contains not allowed symbols.",
+      "msg-9": "Field accept only numeric",
+      "msg-10": "Password should contain at least one upper case",
+      "msg-11": "Password should contain at least one lower case",
+      "msg-12": "Password should contain at least one numeric",
+      "msg-13": "Password should contain at least one special char",
+      "msg-14": "Password should contain alphabets",
+      "msg-15": "Password should contain @ or # or $",
+      "msg-16": "Password / Confirm password not matched",
+      "msg-17": "Please input valid email address"
+    }
+  }
+}

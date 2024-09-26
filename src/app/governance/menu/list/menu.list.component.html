@@ -1,0 +1,19 @@
+<div nz-row nzJustify="end">
+    <div nz-col>
+        <nz-space>
+            <input *nzSpaceItem [(ngModel)]="paginationDto.searchValue" class="search-input-size" nz-input
+                placeholder="{{'app.general.pagination.searchValue' | translate}}" nzSize="small" />
+            <nz-select *nzSpaceItem id="searchSelect" [(ngModel)]="paginationDto.searchField">
+                <nz-option nzValue="" nzLabel="{{'app.general.pagination.searchField' | translate}}"></nz-option>
+                <nz-option nzValue="id" nzLabel="{{'app.general.pagination.id' | translate}}"></nz-option>
+                <nz-option nzValue="name" nzLabel="{{'app.general.pagination.name' | translate}}"></nz-option>
+                <nz-option nzValue="description"
+                    nzLabel="{{'app.general.pagination.description' | translate}}"></nz-option>
+            </nz-select>
+            <button *nzSpaceItem nz-button nzType="primary" nzSize="small" (click)="search()">
+                <i nz-icon nzType="search"></i>
+            </button>
+        </nz-space>
+    </div>
+</div>
+<app-module-datatable [pageName]="pageName" [paginationDto]="paginationDto"></app-module-datatable>

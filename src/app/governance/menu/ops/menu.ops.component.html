@@ -1,0 +1,13 @@
+<form nz-form [formGroup]="crudForm" (ngSubmit)="createOrUpdate()">
+    <app-form-general [parentForm]="crudForm" [pageName]="pageName" [crudOps]="crudOps"
+        [object]="object"></app-form-general>
+    <div nz-row>
+        <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="8" [nzXXl]="8">
+            <app-form-input [parentForm]="crudForm" controlName="path" [controlType]="controlType.input"
+                [pageName]="pageName" [crudOps]="crudOps" formControlName="path" />
+        </div>
+    </div>
+
+    <app-form-audit [object]="object" [crudOps]="crudOps"></app-form-audit>
+    <app-form-submit-buttons [crudOps]="crudOps" [crudForm]="crudForm"></app-form-submit-buttons>
+</form>
