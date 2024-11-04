@@ -1,60 +1,69 @@
 <nz-divider></nz-divider>
 <div nz-row>
-    <input nz-input name="id" type="hidden" [formControl]="id" />
+    <input nz-input name="id" type="hidden" [formControl]="id"/>
     <div *ngIf="crudOps === permissions.view" nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="8"
-        [nzXXl]="8">
+         [nzXXl]="8">
         <nz-form-item>
-            <nz-form-label class="opsFieldsPadding" [nzRequired]="true">{{'app.general.page.id' |
-                translate}}</nz-form-label>
+            <nz-form-label class="opsFieldsPadding" [nzRequired]="true">{{
+                    'app.general.page.id' |
+                        translate
+                }}
+            </nz-form-label>
             <nz-form-control class="opsFieldsPadding">
-                <span>{{object?.id}}</span>
+                <span>{{ object?.id }}</span>
             </nz-form-control>
         </nz-form-item>
     </div>
     <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="8" [nzXXl]="8">
         <nz-form-item>
-            <nz-form-label class="opsFieldsPadding" [nzRequired]="true">{{'app.general.page.name' |
-                translate}}</nz-form-label>
+            <nz-form-label class="opsFieldsPadding" [nzRequired]="true">{{
+                    'app.general.page.name' |
+                        translate
+                }}
+            </nz-form-label>
             <nz-form-control class="opsFieldsPadding" *ngIf="crudOps !== permissions.view"
-                [nzValidateStatus]="getFormField('name')" [nzHasFeedback]="getFormField('name')?.invalid
+                             [nzValidateStatus]="getFormField('name')" [nzHasFeedback]="getFormField('name')?.invalid
                               && getFormField('name')?.dirty" [nzErrorTip]="nameErrorTemplate">
                 <input nz-input placeholder="{{'app.general.page.name' | translate}}" nzSize="small"
-                    [formControl]="name" nz-tooltip
-                    [nzTooltipTitle]="appCtrlService.generateToolTip(controlType.input, pageName, 'name', true)" />
+                       [formControl]="name" nz-tooltip
+                       [nzTooltipTitle]="appCtrlService.generateToolTip(control.input, pageName, 'name', true)"/>
             </nz-form-control>
             <ng-template #nameErrorTemplate>
                 <app-field-errors [control]="getFormField('name')" controlName="name"></app-field-errors>
             </ng-template>
             <nz-form-control class="opsFieldsPadding" *ngIf="crudOps === permissions.view">
-                <span>{{object?.name}}</span>
+                <span>{{ object?.name }}</span>
             </nz-form-control>
         </nz-form-item>
     </div>
     <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="8" [nzXXl]="8">
         <nz-form-item>
-            <nz-form-label class="opsFieldsPadding">{{'app.general.page.description' | translate}}</nz-form-label>
+            <nz-form-label class="opsFieldsPadding"
+                           [nzRequired]="true">{{ 'app.general.page.description' | translate }}
+            </nz-form-label>
             <nz-form-control class="opsFieldsPadding" *ngIf="crudOps !== permissions.view"
-                [nzValidateStatus]="getFormField('description')" [nzHasFeedback]="getFormField('description')?.invalid
+                             [nzValidateStatus]="getFormField('description')" [nzHasFeedback]="getFormField('description')?.invalid
                               && getFormField('description')?.dirty" [nzErrorTip]="descriptionErrorTemplate">
                 <input nz-input placeholder="{{'app.general.page.description' | translate}}" nzSize="small"
-                    [formControl]="description" nz-tooltip
-                    [nzTooltipTitle]="appCtrlService.generateToolTip(controlType.input, pageName, 'description', true)" />
+                       [formControl]="description" nz-tooltip
+                       [nzTooltipTitle]="appCtrlService.generateToolTip(control.inputSpecial, pageName, 'description', true)"/>
             </nz-form-control>
             <ng-template #descriptionErrorTemplate>
                 <app-field-errors [control]="getFormField('description')" controlName="description"></app-field-errors>
             </ng-template>
             <nz-form-control class="opsFieldsPadding" *ngIf="crudOps === permissions.view">
-                <span>{{object?.description}}</span>
+                <span>{{ object?.description }}</span>
             </nz-form-control>
         </nz-form-item>
     </div>
     <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="8" [nzXXl]="8">
         <nz-form-item>
-            <nz-form-label class="opsFieldsPadding" nzRequired>{{'app.general.page.status' | translate}}</nz-form-label>
+            <nz-form-label class="opsFieldsPadding" nzRequired>{{ 'app.general.page.status' | translate }}
+            </nz-form-label>
             <nz-form-control class="opsFieldsPadding" *ngIf="crudOps !== permissions.view"
-                [nzErrorTip]="statusErrorTemplate">
+                             [nzErrorTip]="statusErrorTemplate">
                 <nz-select [formControl]="status" nzSize="small"
-                    nzPlaceHolder="{{'app.general.pagination.select' | translate}}">
+                           nzPlaceHolder="{{'app.general.pagination.select' | translate}}">
                     <nz-option [nzValue]="true" nzLabel="{{'app.general.status.active' | translate}}"></nz-option>
                     <nz-option [nzValue]="false" nzLabel="{{'app.general.status.inactive' | translate}}"></nz-option>
                 </nz-select>
@@ -63,8 +72,8 @@
                 <app-field-errors [control]="getFormField('status')" controlName="status"></app-field-errors>
             </ng-template>
             <nz-form-control class="opsFieldsPadding" *ngIf="crudOps === permissions.view">
-                <span *ngIf="object.status">{{'app.general.status.active' | translate}}</span>
-                <span *ngIf="!object.status">{{'app.general.status.inactive' | translate}}</span>
+                <span *ngIf="object.status">{{ 'app.general.status.active' | translate }}</span>
+                <span *ngIf="!object.status">{{ 'app.general.status.inactive' | translate }}</span>
             </nz-form-control>
         </nz-form-item>
     </div>

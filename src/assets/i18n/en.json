@@ -14,7 +14,11 @@
         "edit": "Edit",
         "view": "View",
         "submit": "Submit",
-        "reset": "Reset"
+        "reset": "Reset",
+        "delete": "Delete",
+        "yes": "Yes",
+        "no": "No",
+        "back": "Back"
       },
       "page": {
         "id": "Id",
@@ -34,11 +38,21 @@
         "status": "Status"
       },
       "tooltip": {
-        "control": "Field: {{controlName}} -> Min Length: {{minLength}}, Max Length: {{maxLength}}, Allowed: {{pattern}}, regx: {{regx}}"
+        "general": "Field: {{controlName}} -> Min Length: {{minLength}}, Max Length: {{maxLength}}, Allowed: {{pattern}}"
       },
       "status": {
         "active": "Active",
         "inactive": "Inactive"
+      },
+      "popup": {
+        "deletePopUp": "Are you sure to delete?",
+        "statusPopUp": "Are you sure to change status?"
+      },
+      "audit": {
+        "createdAt": "Created At",
+        "createdBy": "Created By",
+        "modifiedAt": "Modified At",
+        "modifiedBy": "Modified By"
       }
     },
     "page": {
@@ -53,7 +67,11 @@
         "name": "Menu",
         "description": "Menu can be created here!",
         "label": {
-          "path": "Path"
+          "path": "Path",
+          "icon": "Icon",
+          "rootMenuId": "Root Menu Id",
+          "displayPosition": "Display Position",
+          "menuType": "Menu Type"
         }
       },
       "organization": {
@@ -74,30 +92,42 @@
       }
     },
     "regxPatterns": {
-      "input": "Upper case, Lower case, Numeric, underscore",
-      "inputSpecial": "Upper case, Lower case, Numeric, underscore, comma, slash, hyphen, dot",
+      "input": "Upper case, Lower case, Numeric, Underscore, Space",
+      "inputSpecial": "Upper case, Lower case, Numeric, Underscore, Comma, Slash, Hyphen, Dot",
       "numeric": "Numeric",
       "password": "Upper case, Lower case, Numeric, @ $ #"
     },
-    "error": {
-      "msg-0": "Problem occurred. Please try again later.",
-      "msg-1": "Field should not be empty.",
-      "msg-2": "Field should not be null.",
-      "msg-3": "Please input your email!",
-      "msg-4": "Please input your password!",
-      "msg-5": "Requested Data Not available.",
-      "msg-6": "Field required minimum length of input.",
-      "msg-7": "Field cannot accept more.",
-      "msg-8": "Input contains not allowed symbols.",
-      "msg-9": "Field accept only numeric",
-      "msg-10": "Password should contain at least one upper case",
-      "msg-11": "Password should contain at least one lower case",
-      "msg-12": "Password should contain at least one numeric",
-      "msg-13": "Password should contain at least one special char",
-      "msg-14": "Password should contain alphabets",
-      "msg-15": "Password should contain @ or # or $",
-      "msg-16": "Password / Confirm password not matched",
-      "msg-17": "Please input valid email address"
+    "message": {
+      "generic": {
+        "error": "Error",
+        "info": "Information",
+        "refer-console": "Refer developer console in the browser for exception details.",
+        "success": "Success",
+        "warning": "Warning"
+      },
+      "success": {
+        "000": "Operation completed successfully."
+      },
+      "failure": {
+        "000": "Problem occurred. Please try again later.",
+        "001": "Field should not be empty.",
+        "002": "Field should not be null.",
+        "003": "Requested Data Not available or Inactive.",
+        "004": "Please input your password!",
+        "005": "Please input your email!",
+        "006": "Field required minimum/maximum length of input.",
+        "007": "Field required minimum/maximum length of input.",
+        "008": "Input contains not allowed symbols.",
+        "009": "Field accept only numeric",
+        "010": "Password should contain at least one upper case",
+        "011": "Password should contain at least one lower case",
+        "012": "Password should contain at least one numeric",
+        "013": "Password should contain at least one special char",
+        "014": "Password should contain alphabets",
+        "015": "Password should contain @ or # or $",
+        "016": "Password / Confirm password not matched",
+        "017": "Please input valid email address"
+      }
     }
   }
 }

@@ -12,5 +12,5 @@ export class FormAuditComponent {
     @Input()
     public crudOps: string;
 
-    public permissions: any = APP_NAVIGATION.permission;
+    public permissions: any = APP_NAVIGATION.permissions;
 }

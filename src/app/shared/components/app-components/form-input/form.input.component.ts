@@ -1,13 +1,8 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {
-    ControlValueAccessor,
-    FormControl,
-    FormGroup,
-    NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import {ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {APP_NAVIGATION} from '../../../routes/navigation.constant';
-import {ControlType} from '../../../enums/control.enum';
 import {AppControlService} from '../../../services/app.control.service';
+import {Control} from '../../../interfaces/control.type';
 
 @Component({
     selector: 'app-form-input',
@@ -28,20 +23,20 @@ export class FormInputComponent implements ControlValueAccessor, OnInit {
     @Input()
     pageName: string;
     @Input()
-    controlType: ControlType;
+    control: Control;
     @Input()
-    isOptional: boolean = false;
+    isRequired = true;
     @Input()
-    isHideLabel: boolean = false;
+    isHideLabel = false;
     @Input()
-    isDisabled: boolean = false;
+    isDisabled = false;
     @Input()
     crudOps: string;
 
     public controlValue: string;
     public changed: (value: string) => void;
     public touched: () => void;
-    public permissions: any = APP_NAVIGATION.permission;
+    public permissions: any = APP_NAVIGATION.permissions;
 
     constructor(public appCtrlService: AppControlService) {
     }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  uamApiURL: 'http://localhost:8080/',
+  uamApiURL: 'http://localhost:8080/api/uam-service/',
 };
 
 /*

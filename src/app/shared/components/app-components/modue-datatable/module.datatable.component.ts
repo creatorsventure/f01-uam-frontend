@@ -12,7 +12,7 @@ import {AlertService} from '../../../services/alert.service';
 export class ModuleDatatableComponent implements OnInit {
     constructor(
         private service: CRUDService,
-        private alertService: AlertService
+        private alertService: AlertService,
     ) {
     }
 
@@ -36,8 +36,7 @@ export class ModuleDatatableComponent implements OnInit {
             },
             error: (err) => {
                 this.paginationDto.loading = false;
-            },
-            complete: () => console.info('Refresh list operation completed.'),
+            }
         });
     }
 
@@ -45,14 +44,13 @@ export class ModuleDatatableComponent implements OnInit {
         this.service.changeStatus(this.pageName, id, inStatus).subscribe({
             next: (status) => {
                 if (status) {
-                    this.alertService.success('app.success.msg-0', true);
+                    this.alertService.success('app.message.success.000', true);
                     this.refreshDatatable();
                 }
             },
             error: (err) => {
-                this.alertService.handleHttpErrorResp(err, null);
-            },
-            complete: () => console.info('Refresh list operation completed.'),
+                this.alertService.alertHttpErrorResp(err, null);
+            }
         });
     }
 
@@ -60,14 +58,13 @@ export class ModuleDatatableComponent implements OnInit {
         this.service.delete(this.pageName, id).subscribe({
             next: (status) => {
                 if (status) {
-                    this.alertService.success('app.success.msg-0', true);
+                    this.alertService.success('app.message.success.000', true);
                     this.refreshDatatable();
                 }
             },
             error: (err) => {
-                this.alertService.handleHttpErrorResp(err, null);
-            },
-            complete: () => console.info('Delete operation completed.'),
+                this.alertService.alertHttpErrorResp(err, null);
+            }
         });
     }
 
@@ -79,14 +76,13 @@ export class ModuleDatatableComponent implements OnInit {
             .subscribe({
                 next: (status) => {
                     if (status) {
-                        this.alertService.success('app.success.msg-0', true);
+                        this.alertService.success('app.message.success.000', true);
                         this.refreshDatatable();
                     }
                 },
                 error: (err) => {
-                    this.alertService.handleHttpErrorResp(err, null);
-                },
-                complete: () => console.info('Delete operation completed.'),
+                    this.alertService.alertHttpErrorResp(err, null);
+                }
             });
     }
 

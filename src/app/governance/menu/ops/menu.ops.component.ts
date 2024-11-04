@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {OpsAbstract} from '../../../shared/abstract/ops.abstract';
 import {ActivatedRoute} from '@angular/router';
 import {CRUDService} from '../../../shared/services/crud.service';
-import {AlertService} from '../../../shared/services/alert.service';
 import {FormBuilder} from '@angular/forms';
 import {AppControlService} from '../../../shared/services/app.control.service';
-import {ControlType} from '../../../shared/enums/control.enum';
+import {AlertService} from '../../../shared/services/alert.service';
+import {CONTROL_DESCRIPTION} from '../../../shared/constant/control.constant';
 
 @Component({
     selector: 'app-menu-ops',
@@ -16,19 +16,20 @@ export class MenuOpsComponent extends OpsAbstract implements OnInit {
         public override fb: FormBuilder,
         public override activatedRoute: ActivatedRoute,
         public override crudService: CRUDService,
+        public override appCtrlService: AppControlService,
         public override alertService: AlertService,
-        public override appCtrlService: AppControlService
     ) {
-        super(fb, activatedRoute, crudService, alertService, appCtrlService);
+        super(fb, activatedRoute, crudService, appCtrlService, alertService);
     }
 
     ngOnInit(): void {
         super.init();
         this.crudForm = this.fb.group({
-            path: this.appCtrlService.generateFormControl(
-                ControlType.input,
-                this.object?.path
-            ),
+            path: this.appCtrlService.generateFormControl(CONTROL_DESCRIPTION.input, this.object?.path, false),
+            icon: this.appCtrlService.generateFormControl(CONTROL_DESCRIPTION.input, this.object?.icon),
+            rootMenuId: this.appCtrlService.generateFormControl(CONTROL_DESCRIPTION.numeric, this.object?.rootMenuId),
+            displayPosition: this.appCtrlService.generateFormControl(CONTROL_DESCRIPTION.numeric, this.object?.displayPosition),
+            menuType: this.appCtrlService.generateFormControl(CONTROL_DESCRIPTION.input, this.object?.menuType),
         });
     }
 
@@ -45,4 +46,5 @@ export class MenuOpsComponent extends OpsAbstract implements OnInit {
 
     override customPostFailureOps(): void {
     }
+
 }

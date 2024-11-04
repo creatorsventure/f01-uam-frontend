@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {updateFormPristineAndUntouched} from '../../../utils/utils';
 import {APP_NAVIGATION} from '../../../routes/navigation.constant';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-form-submit-buttons',
@@ -14,9 +15,23 @@ export class FormSubmitButtonsComponent {
     @Input()
     public crudOps: string;
 
-    public permissions: any = APP_NAVIGATION.permission;
+    @Input()
+    public pageName: string;
+
+    @Input()
+    public parent: string;
+
+    public permissions: any = APP_NAVIGATION.permissions;
+
+    constructor(public router: Router, private route: ActivatedRoute) {
+    }
 
     reset(): void {
         updateFormPristineAndUntouched(this.crudForm);
     }
+
+    redirectToListPage(): void {
+        this.router.navigate(['../../'], {relativeTo: this.route, skipLocationChange: true});
+    }
+
 }

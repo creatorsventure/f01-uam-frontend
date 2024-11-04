@@ -2,8 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {APP_NAVIGATION} from '../../../routes/navigation.constant';
 import {AppControlService} from '../../../services/app.control.service';
-import {ControlType} from '../../../enums/control.enum';
-import {controlValidation} from '../../../constant/control.constant';
+import {CONTROL_DESCRIPTION} from '../../../constant/control.constant';
 
 @Component({
     selector: 'app-form-general',
@@ -26,8 +25,8 @@ export class FormGeneralComponent implements OnInit {
     public name: FormControl;
     public description: FormControl;
     public status: FormControl;
-    public permissions: any = APP_NAVIGATION.permission;
-    public controlType = ControlType;
+    public permissions: any = APP_NAVIGATION.permissions;
+    public control = CONTROL_DESCRIPTION;
 
     constructor(public appCtrlService: AppControlService) {
     }
@@ -38,17 +37,17 @@ export class FormGeneralComponent implements OnInit {
 
         this.name = new FormControl(this.object?.name, [
             Validators.required,
-            Validators.minLength(controlValidation.defaultMinLength),
-            Validators.maxLength(controlValidation.defaultMaxLength),
-            Validators.pattern(controlValidation.input.pattern),
+            Validators.minLength(this.control.input.minLength),
+            Validators.maxLength(this.control.input.maxLength),
+            Validators.pattern(this.control.input.pattern),
         ]);
         this.parentForm.addControl('name', this.name);
 
         this.description = new FormControl(this.object?.description, [
             Validators.required,
-            Validators.minLength(controlValidation.defaultMinLength),
-            Validators.maxLength(controlValidation.defaultMaxLength),
-            Validators.pattern(controlValidation.input.pattern),
+            Validators.minLength(this.control.input.minLength),
+            Validators.maxLength(this.control.input.maxLength),
+            Validators.pattern(this.control.inputSpecial.pattern),
         ]);
         this.parentForm.addControl('description', this.description);
 

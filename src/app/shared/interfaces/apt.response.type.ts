@@ -13,7 +13,9 @@ export class APIResponse implements IAPIResponse {
 }
 
 export enum APIResponseType {
-    MESSAGE = 0,
-    OBJECT = 1,
-    LIST = 2
+    MESSAGE_ACTUAL = 0,
+    MESSAGE_CODE = 1,
+    MESSAGE_CODE_LIST = 2,
+    OBJECT_ONE = 3,
+    OBJECT_LIST = 4
 }

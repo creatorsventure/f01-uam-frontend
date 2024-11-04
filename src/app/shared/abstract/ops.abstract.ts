@@ -1,20 +1,16 @@
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {ControlType} from '../enums/control.enum';
 import {APP_NAVIGATION} from '../routes/navigation.constant';
-import {AlertService} from '../services/alert.service';
 import {AppControlService} from '../services/app.control.service';
 import {CRUDService} from '../services/crud.service';
-import {
-    publishStatus,
-    updateFormDirtyAndValueAndValidity,
-    updateFormPristineAndUntouched,
-} from '../utils/utils';
+import {updateFormDirtyAndValueAndValidity, updateFormPristineAndUntouched} from '../utils/utils';
+import {AlertService} from '../services/alert.service';
+import {CONTROL_DESCRIPTION} from '../constant/control.constant';
 
 export abstract class OpsAbstract {
     public object: any | null = null;
     public pageName: string | null = null;
-    public controlType = ControlType;
+    public control = CONTROL_DESCRIPTION;
     public crudForm: FormGroup;
     public crudOps: string | null = null;
 
@@ -22,8 +18,8 @@ export abstract class OpsAbstract {
         public fb: FormBuilder,
         public activatedRoute: ActivatedRoute,
         public crudService: CRUDService,
+        public appCtrlService: AppControlService,
         public alertService: AlertService,
-        public appCtrlService: AppControlService
     ) {
     }
 
@@ -67,15 +63,16 @@ export abstract class OpsAbstract {
                     )
                     .subscribe({
                         next: (status) => {
-                            this.customPostSuccessOps();
-                            publishStatus(this.alertService, status, this.crudForm, false);
+                            if (status) {
+                                this.customPostSuccessOps();
+                            }
                         },
                         error: (err) => {
                             this.customPostFailureOps();
-                            this.alertService.handleHttpErrorResp(err, this.pageName);
+                            this.alertService.alertHttpErrorResp(err, this.pageName);
                         },
                         complete: () => {
-                            console.info('Create operation completed.');
+                            this.alertService.publishStatus(true);
                         },
                     });
             } else if (
@@ -89,15 +86,16 @@ export abstract class OpsAbstract {
                     )
                     .subscribe({
                         next: (status) => {
-                            this.customPostSuccessOps();
-                            publishStatus(this.alertService, status, this.crudForm, false);
+                            if (status) {
+                                this.customPostSuccessOps();
+                            }
                         },
                         error: (err) => {
                             this.customPostFailureOps();
-                            this.alertService.handleHttpErrorResp(err, this.pageName);
+                            this.alertService.alertHttpErrorResp(err, this.pageName);
                         },
                         complete: () => {
-                            console.info('Update operation completed.');
+                            this.alertService.publishStatus(true);
                         },
                     });
             } else {
